@@ -1,6 +1,6 @@
 {
     "name": "http-uploader",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "Easy Upload Your Files",
     "preferGlobal": true,
     "bin": {
