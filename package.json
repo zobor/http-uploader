@@ -1,0 +1,33 @@
+{
+    "name": "http-uploader",
+    "version": "1.0.1",
+    "description": "Easy Upload Your Files",
+    "bin": {
+        "bproxy": "./bin/http-uploader"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/zobor/http-uploader"
+    },
+    "keywords": [
+        "uploader, http-uploader, http-uploader-server"
+    ],
+    "author": {
+        "name": "zobor",
+        "email": "nodejs.js@gmail.com"
+    },
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/zobor/http-uploader/issues"
+    },
+    "engines": {
+        "node": ">= 6.4.0"
+    },
+    "preferGlobal": true,
+    "homepage": "https://github.com/zobor/http-uploader",
+    "dependencies": {
+        "colors": "^1.1.2",
+        "commander": "^2.14.1",
+        "multiparty": "^4.1.3"
+    }
+}
