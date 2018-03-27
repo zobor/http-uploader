@@ -1,9 +1,10 @@
 {
     "name": "http-uploader",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Easy Upload Your Files",
+    "preferGlobal": true,
     "bin": {
-        "bproxy": "./bin/http-uploader"
+        "http-uploader": "./bin/http-uploader"
     },
     "repository": {
         "type": "git",
@@ -23,7 +24,6 @@
     "engines": {
         "node": ">= 6.4.0"
     },
-    "preferGlobal": true,
     "homepage": "https://github.com/zobor/http-uploader",
     "dependencies": {
         "colors": "^1.1.2",
