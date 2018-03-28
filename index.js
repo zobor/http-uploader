@@ -1,6 +1,9 @@
 const program = require('commander')
 const packageJson = require('./package.json')
 
+if (process.argv.length==2) {
+  process.argv.push('-p')
+}
 
 program
     .version(packageJson.version)
