@@ -4,7 +4,7 @@ const multiparty = require('multiparty')
 const path = require('path')
 const colors = require('colors')
 var PORT = 8080
-var IPv4 = getLocalIpAddress();
+var IPv4s = getLocalIpAddress()
 
 function Uploader(options){
     PORT = options.port || PORT;
@@ -80,20 +80,27 @@ function Uploader(options){
     var $name = 'http-uploader'.green.bold;
     console.log(`${$name} the path to be save: ${$path}`)
     console.log(`Available on:`)
-    console.log(`http://127.0.0.1:${PORT}/`.red.underline)
-    console.log(`http://${IPv4}:${PORT}/`.red.underline)
+    // console.log(`http://127.0.0.1:${PORT}/`.red.underline)
+    // console.log(`http://${IPv4}:${PORT}/`.red.underline)
+    IPv4s.forEach(item=>{
+        console.log(`http://${item}:${PORT}/`.green.underline)
+    })
     console.log(`Press Ctrl+C to stop！`.underline)
 }
 
 function getLocalIpAddress(){
-    var os = require('os');
-    var IPv4;
-    for(var i=0;i<os.networkInterfaces().en0.length;i++){
-        if(os.networkInterfaces().en0[i].family=='IPv4'){
-            IPv4=os.networkInterfaces().en0[i].address;
+    var os=require('os');
+    var ifaces=os.networkInterfaces();
+    var Ips = []
+    for (var dev in ifaces) {
+      var alias=0;
+      ifaces[dev].forEach(function(details){
+        if (details.family=='IPv4') {
+          Ips.push(details.address)
         }
+      });
     }
-    return IPv4;
+    return Ips;
 }
 
 module.exports = Uploader;
