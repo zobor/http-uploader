@@ -1,9 +1,8 @@
-// 获得拖拽文件的回调函数
 function getDropFileCallBack(dropFiles) {
   console.log(dropFiles, dropFiles.length);
 }
 
-var dropZone = document.querySelector("#dropZone");
+var $dropZone = $("#dropZone");
 var uploader = new Uploader({});
 var $progress = $('#progress');
 var $loading = $('#loading');
@@ -68,42 +67,30 @@ function handlerFiles(fs) {
   })
 }
 
-dropZone.addEventListener("dragenter", function (e) {
+$dropZone.on("dragenter", function (e) {
+  e = e.originalEvent;
   e.preventDefault();
   e.stopPropagation();
-}, false);
-
-dropZone.addEventListener("dragover", function (e) {
-  e.dataTransfer.dropEffect = 'copy';
+}).on("dragover", function (e) {
+  e = e.originalEvent;
   e.preventDefault();
   e.stopPropagation();
-}, false);
-
-dropZone.addEventListener("dragleave", function (e) {
+}).on("dragleave", function (e) {
+  e = e.originalEvent;
   e.preventDefault();
   e.stopPropagation();
-}, false);
-
-dropZone.addEventListener("drop", function (e) {
+}).on("drop", function (e) {
+  e = e.originalEvent;
   e.preventDefault();
   e.stopPropagation();
-
 
   var df = e.dataTransfer;
-  var dropFiles = []; // 拖拽的文件，会放到这里
-  var dealFileCnt = 0; // 读取文件是个异步的过程，需要记录处理了多少个文件了
-  var allFileLen = df.files.length; // 所有的文件的数量，给非Chrome浏览器使用的变量
+  var dropFiles = [];
+  var dealFileCnt = 0;
+  var allFileLen = df.files.length;
 
-  // 检测是否已经把所有的文件都遍历过了
-  function checkDropFinish() {
-    if (dealFileCnt === allFileLen - 1) {
-      getDropFileCallBack(dropFiles);
-    }
-    dealFileCnt++;
-  }
 
   if (df.items !== undefined) {
-    // Chrome拖拽文件逻辑
     for (var i = 0; i < df.items.length; i++) {
       var item = df.items[i];
       if (item.kind === "file" && item.webkitGetAsEntry().isFile) {
@@ -113,4 +100,4 @@ dropZone.addEventListener("drop", function (e) {
     }
     handlerFiles(dropFiles)
   }
-}, false);
+});
