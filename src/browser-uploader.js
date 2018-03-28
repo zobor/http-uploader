@@ -42,6 +42,9 @@ function Uploader (opts){
                 }, err || {}))
             },
             progress: function(evt) {
+                if (!evt.total){
+                    return;
+                }
                 var progress = parseInt(evt.loaded / evt.total * 100) + '%'
                 that.opts.progress(progress)
             }
@@ -63,5 +66,27 @@ function Uploader (opts){
         return url
     }
 }
+
+
+(function addXhrProgressEvent($) {
+    var originalXhr = $.ajaxSettings.xhr;
+    $.ajaxSetup({
+        xhr: function() {
+            var xhr = originalXhr(), that = this;
+            if (xhr) {
+                xhr.addEventListener('progress', function(evt) {
+                    that.progress(evt);
+                }, false);
+                if(xhr.upload) {
+                    xhr.upload.addEventListener('progress', function(evt) {
+                        that.progress(evt);
+                    }, false);
+                }
+            }
+            return xhr;
+        }
+    });
+})(jQuery);
+
 
 window.Uploader = Uploader

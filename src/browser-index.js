@@ -57,6 +57,7 @@ function handlerFiles(fs) {
       url: '/',
       data: data,
       progress:function(e){
+        console.log(e)
         if (e&&e.replace) {
           updateLoading( e.replace('%','') )
         }
