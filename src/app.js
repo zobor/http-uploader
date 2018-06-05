@@ -3,8 +3,10 @@ const fs = require('fs')
 const multiparty = require('multiparty')
 const path = require('path')
 const colors = require('colors')
+const util = require('util')
 var PORT = 8080
 var IPv4s = getLocalIpAddress()
+
 
 function Uploader(options){
     PORT = options.port || PORT;
@@ -63,10 +65,18 @@ function Uploader(options){
             });
 
             form.parse(req, function (err, fields, files) {
-                res.writeHead(200, { 'content-type': 'application/json' });
+                var resHeaders = {
+                    'content-type': 'application/json',
+                }
+                if(req && res.headers && res.headers.origin){
+                    resHeaders['Access-Control-Allow-Credentials'] = 'true';
+                    resHeaders['Access-Control-Allow-Origin'] = req.headers.origin;
+                }
+                res.writeHead(200, resHeaders);
                 res.write(JSON.stringify({
                     code:0,
-                    msg: 'ok'
+                    msg: 'ok',
+                    info: files
                 }))
                 res.end('')
             });
