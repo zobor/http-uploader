@@ -68,7 +68,7 @@ function Uploader(options){
                 var resHeaders = {
                     'content-type': 'application/json',
                 }
-                if(req && res.headers && res.headers.origin){
+                if(req && req.headers && req.headers.origin){
                     resHeaders['Access-Control-Allow-Credentials'] = 'true';
                     resHeaders['Access-Control-Allow-Origin'] = req.headers.origin;
                 }

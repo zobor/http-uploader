@@ -1,24 +1,8 @@
 # http-uploader
 
 Easy Upload Your Files
+http-uploader 快速实现用户到服务器端的文件上传，局域网文件便捷共享，上传功能测试。
 
 --------
 
-## install
-```
-npm install -g http-uploader
-```
-
-## Usage
-
-### start server app
-```
-cd /path/to/save/your/file/
-http-uploader -p 8080
-```
-
-### client side
-
-browser open http://ip:8080
-
-![](https://zobor.github.io/static-files/imgs/http-upload-2.png)
+[Document](http://zobor.xyz/?p=8)
