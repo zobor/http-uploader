@@ -5,4 +5,4 @@ http-uploader 快速实现用户到服务器端的文件上传，局域网文件
 
 --------
 
-[Document](http://zobor.xyz/?p=8)
+[Document](http://regx.vip/post/http-uploader/)
